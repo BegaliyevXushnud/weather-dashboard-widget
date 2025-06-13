@@ -1,0 +1,444 @@
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  line-height: 1.5;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Theme Styles */
+.theme-light {
+  background: #f8f9fa; /* Talabga mos gradient o'rniga yagona rang */
+  color: #212529; /* Text rangi talabga mos */
+}
+.theme-dark {
+  background: #212529; /* Talabga mos */
+  color: #f8f9fa; /* Text rangi talabga mos */
+}
+.accent {
+  color: #0d6efd; /* Talabga mos accent rangi */
+}
+
+/* Widget Container */
+.weather-widget {
+  width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+}
+.weather-widget.theme-light {
+  background: #f8f9fa; /* Light theme uchun talabga mos */
+}
+.weather-widget.theme-dark {
+  background: #212529; /* Dark theme uchun talabga mos */
+}
+.weather-widget.fade {
+  opacity: 0.5;
+}
+@media (max-width: 840px) {
+  .weather-widget {
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+  }
+}
+
+/* City Selector */
+.city-selector {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+.city-selector label {
+  font-size: 14px;
+  color: #212529; /* Light theme uchun */
+}
+
+.city-selector select,
+.city-selector input {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 300px;
+  background: #fff;
+  color: #212529;
+  transition: border-color 0.2s ease;
+}
+
+.city-selector select:focus,
+.city-selector input:focus {
+  outline: none;
+  border-color: #0d6efd; /* Accent rangi talabga mos */
+  box-shadow: 0 0 5px rgba(13, 110, 253, 0.5); /* Accent ga mos */
+}
+
+.city-selector .suggestions-dropdown {
+  position: absolute;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  width: 100%;
+  max-width: 300px;
+  top: 100%;
+  left: 0;
+}
+
+.city-selector .suggestion-option {
+  padding: 10px;
+  cursor: pointer;
+  color: #212529;
+}
+
+.city-selector .suggestion-option:hover {
+  background: #f0f0f0;
+  color: #000;
+}
+
+.city-selector .suggestion-option.selected {
+  background: #e6f0fa;
+  color: #000;
+}
+
+.city-selector .suggestion-option.selected::after {
+  content: '';
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid #0d6efd; /* Accent rangi */
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+}
+
+.city-selector .suggestions-dropdown li:last-child.selected::after {
+  border-left: 6px solid transparent;
+  border-top: 6px solid #0d6efd; /* Accent rangi */
+  border-right: 6px solid transparent;
+  border-bottom: none;
+}
+
+.city-selector .error-message {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Dark Theme Adjustments */
+.theme-dark .city-selector select,
+.theme-dark .city-selector input {
+  background: #212529; /* Dark theme background */
+  color: #f8f9fa; /* Text rangi */
+  border-color: #3a3f58;
+}
+
+.theme-dark .city-selector .suggestions-dropdown {
+  background: #212529; /* Dark theme background */
+  border-color: #3a3f58;
+}
+
+.theme-dark .city-selector .suggestion-option {
+  color: #f8f9fa; /* Text rangi */
+}
+
+.theme-dark .city-selector .suggestion-option:hover {
+  background: #2b2d42;
+  color: #fff;
+}
+
+.theme-dark .city-selector .suggestion-option.selected {
+  background: #2e3a58;
+  color: #f8f9fa; /* Text rangi */
+}
+
+.theme-dark .city-selector .suggestion-option.selected::after {
+  border-left: 6px solid #0d6efd; /* Accent rangi */
+}
+
+.theme-dark .city-selector .suggestions-dropdown li:last-child.selected::after {
+  border-top: 6px solid #0d6efd; /* Accent rangi */
+}
+
+.theme-dark .city-selector label {
+  color: #f8f9fa; /* Text rangi */
+}
+
+/* Weather Display */
+.weather-display {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.weather-display.theme-light {
+  background: #f8f9fa; /* Talabga mos */
+  color: #212529; /* Talabga mos */
+}
+.weather-display.theme-dark {
+  background: #212529; /* Talabga mos */
+  color: #f8f9fa; /* Talabga mos */
+}
+.weather-display img {
+  width: 60px;
+  height: 60px;
+}
+.weather-display h2 {
+  margin: 0 0 10px;
+  font-size: 24px;
+}
+.weather-display p {
+  margin: 5px 0;
+  font-size: 18px;
+}
+
+/* Forecast List */
+.forecast-list {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scrollbar-width: thin;
+}
+.forecast-card {
+  flex: 0 0 auto;
+  padding: 15px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.forecast-card.theme-light {
+  background: #f8f9fa; /* Talabga mos */
+  color: #212529; /* Talabga mos */
+  border-color: #ced4da;
+}
+.forecast-card.theme-dark {
+  background: #212529; /* Talabga mos */
+  color: #f8f9fa; /* Talabga mos */
+  border-color: #3a3f58;
+}
+.forecast-card p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+/* Data Visualization */
+.data-visualization {
+  position: relative;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.data-visualization.theme-light {
+  background: #f8f9fa; /* Talabga mos */
+  color: #212529; /* Talabga mos */
+}
+.data-visualization.theme-dark {
+  background: #212529; /* Talabga mos */
+  color: #f8f9fa; /* Talabga mos */
+}
+.data-visualization svg {
+  width: 100%;
+  height: 260px;
+  transition: background-color 0.3s ease;
+}
+.data-visualization.theme-light svg {
+  background: #f8f9fa; /* Talabga mos */
+}
+.data-visualization.theme-dark svg {
+  background: #212529; /* Talabga mos */
+}
+.data-visualization .tooltip {
+  position: absolute;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 10;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.data-visualization.theme-light .tooltip {
+  background: #f8f9fa; /* Talabga mos */
+  color: #212529; /* Talabga mos */
+}
+.data-visualization.theme-dark .tooltip {
+  background: #212529; /* Talabga mos */
+  color: #f8f9fa; /* Talabga mos */
+}
+.data-visualization .summary {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  font-size: 14px;
+}
+.data-visualization .summary p {
+  margin: 0;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+}
+.data-visualization.theme-light .summary p {
+  background: #f8f9fa; /* Talabga mos */
+  color: #212529; /* Talabga mos */
+}
+.data-visualization.theme-dark .summary p {
+  background: #212529; /* Talabga mos */
+  color: #f8f9fa; /* Talabga mos */
+}
+
+/* Settings Panel */
+/* Settings Panel */
+.settings-panel {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.settings-panel.theme-light {
+  background: #f8f9fa; /* Talabga mos */
+}
+
+.settings-panel.theme-dark {
+  background: #212529; /* Talabga mos */
+  border-color: #3a3f58;
+}
+
+.settings-panel select,
+.settings-panel button {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ced4da;
+  background: transparent; /* Transparent fonda, lekin matn rangi aniq belgilanishi kerak */
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  color: inherit; /* Parent element rangidan meros oladi */
+}
+
+.settings-panel.theme-light select,
+.settings-panel.theme-light button {
+  background: #f8f9fa; /* Light uchun fonda */
+  color: #212529; /* Light uchun matn */
+}
+
+.settings-panel.theme-dark select,
+.settings-panel.theme-dark button {
+  background: #212529; /* Dark uchun fonda */
+  color: #f8f9fa; /* Dark uchun matnni oq qilish */
+  border-color: #3a3f58; /* Dark uchun chegaralar */
+}
+
+.settings-panel select:focus,
+.settings-panel button:focus {
+  outline: none;
+  border-color: #0d6efd; /* Accent rangi */
+}
+
+.settings-panel button:hover {
+  background: #0d6efd; /* Accent rangi */
+  color: #f8f9fa; /* Text rangi */
+}
+
+.settings-panel.theme-dark button:hover {
+  background: #0d6efd; /* Accent rangi */
+  color: #f8f9fa; /* Text rangi */
+}
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ced4da;
+  transition: border-color 0.3s ease;
+}
+.tabs.theme-dark {
+  border-color: #3a3f58;
+}
+.tabs button {
+  padding: 10px 15px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+  color: inherit;
+}
+.tabs button.active {
+  border-bottom: 2px solid #0d6efd; /* Accent rangi */
+  color: #0d6efd; /* Accent rangi */
+}
+.tabs button:hover {
+  background: rgba(13, 110, 253, 0.1); /* Accent ga mos */
+}
+
+/* Error Boundary */
+.error-boundary {
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.error-boundary.theme-light {
+  background: #f8f9fa; /* Talabga mos */
+  color: #212529; /* Talabga mos */
+}
+.error-boundary.theme-dark {
+  background: #212529; /* Talabga mos */
+  color: #f8f9fa; /* Talabga mos */
+}
+.weather-widget.fade {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.weather-widget {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #0d6efd; /* Accent rangi */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.weather-widget.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
