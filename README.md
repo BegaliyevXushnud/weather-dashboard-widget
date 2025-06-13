@@ -1,12 +1,22 @@
-# React + Vite
+# Weather App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bu loyiha ob-havo ma’lumotlarini ko‘rsatuvchi veb-ilova bo‘lib, foydalanuvchilar shahar bo‘yicha ob-havo ma’lumotlarini ko‘ra oladi.
 
-Currently, two official plugins are available:
+## Xususiyatlar
+- Shahar tanlash yoki qidirish imkoniyati
+- Harorat, ob-havo holati kabi ma’lumotlar
+- Light va Dark theme qo‘llab-quvvatlash
+- Haroratni Celsius yoki Fahrenheit da ko‘rish
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Texnologiyalar
+- React.js
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Foydalanish
+- Loyihani oching va shahar nomini tanlang yoki qidiruv orqali kiriting.
+- Theme ni o‘zgartirish uchun "Toggle Theme" tugmasini bosing.
+
+
+## Muallif
+[GitHub profilim](https://github.com/BegaliyevXushnud)
+

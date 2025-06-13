@@ -406,12 +406,12 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 .error-boundary.theme-light {
-  background: #f8f9fa; /* Talabga mos */
-  color: #212529; /* Talabga mos */
+  background: #f8f9fa; 
+  color: #212529; 
 }
 .error-boundary.theme-dark {
-  background: #212529; /* Talabga mos */
-  color: #f8f9fa; /* Talabga mos */
+  background: #212529; 
+  color: #f8f9fa; 
 }
 .weather-widget.fade {
   opacity: 0;
